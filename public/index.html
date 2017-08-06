@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebAppMaker">
+<head>
+    <meta charset="utf-8" name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Web App Maker</title>
+
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel= "stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://textangular.com/dist/textAngular.css" type="text/css">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular-rangy.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular-sanitize.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.16/textAngular.min.js'></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!--Controllers-->
+    <script src="views/user/controllers/user.controller.client.js"></script>
+    <script src="views/website/controllers/website.controller.client.js"></script>
+    <script src="views/page/controllers/page.controller.client.js"></script>
+    <script src="views/widget/controllers/widget.controller.client.js"></script>
+    <script src="views/home/controllers/home.controller.client.js"></script>
+    <script src="views/admin/controllers/admin.controller.client.js"></script>
+
+
+    <!--Services-->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <script src="services/page.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+    <script src="services/flickr.service.client.js"></script>
+
+    <!--Directives-->
+    <script src="directives/jga-directives.js"></script>
+    <script src="directives/wbdv-sortable.js"></script>
+
+</head>
+<body>
+
+<div ng-view></div>
+
+
+</body>
+</html>
