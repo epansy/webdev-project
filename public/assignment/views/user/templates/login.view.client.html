@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/home">Login</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-trial" href="#!/home">Back</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <h1>Login</h1>
+    <input type="text"
+           class="form-control"
+           placeholder="username"
+           ng-model="model.username"/>
+    <input type="password"
+           class="form-control"
+           placeholder="password"
+           ng-model="model.password "/>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.login(model.username, model.password)">Login</a>
+    <a class="btn btn-success btn-block"
+       href="#!/register">Register</a>
+    <a href="/auth/google" class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
+        Google
+    </a>
+</div>
+</section>

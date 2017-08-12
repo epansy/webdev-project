@@ -13,10 +13,10 @@ module.exports = function(app, models){
 
     var userModel = models.userModel;
 
-    app.get('/api/publisher', findUserByUsername);
-    app.get('/api/publisher/:uid', findUserById);
-    app.put('/api/publisher/:uid', updateUser);
-    app.delete('/api/publisher/:uid', deleteUser);
+    app.get('/api/user', findUserByUsername);
+    app.get('/api/user/:uid', findUserById);
+    app.put('/api/user/:uid', updateUser);
+    app.delete('/api/user/:uid', deleteUser);
     app.get('/api/alluser', findAllUsers);
 
     /*Config Passport*/
@@ -93,7 +93,7 @@ module.exports = function(app, models){
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    // console.log(publisher);
+                    // console.log(user);
                     if (user === null || user === undefined) {
                         return done(null, false, {message: 'User not found!'})
                     } else if(bcrypt.compareSync(password, user.password)) {
@@ -149,7 +149,7 @@ module.exports = function(app, models){
     function register(req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
-        // console.log(publisher);
+        // console.log(user);
         userModel
             .createUser(user)
             .then(
@@ -167,7 +167,7 @@ module.exports = function(app, models){
 
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
-        // console.log(publisher);
+        // console.log(user);
 
         userModel
             .createUser(user)
@@ -221,7 +221,7 @@ module.exports = function(app, models){
                 .findUserById(params.uid)
                 .then(
                     function (user){
-                        // console.log(publisher);
+                        // console.log(user);
                         if(user){
                             res.json(user);
                         } else {
@@ -267,7 +267,7 @@ module.exports = function(app, models){
                     }
                 );
         } else{
-            // Precondition Failed. Precondition is that the publisher exists.
+            // Precondition Failed. Precondition is that the user exists.
             res.sendStatus(412);
         }
 

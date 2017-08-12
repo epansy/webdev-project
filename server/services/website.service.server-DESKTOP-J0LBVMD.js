@@ -3,17 +3,17 @@ module.exports = function(app, models){
     var websiteModel = models.websiteModel;
 
     //POST Calls
-    app.post('/api/publisher/:uid/questionnaire',createWebsite);
+    app.post('/api/user/:uid/website',createWebsite);
 
     //GET Calls
-    app.get('/api/publisher/:uid/questionnaire',findAllWebsitesForUser);
-    app.get('/api/questionnaire/:wid',findWebsiteById);
+    app.get('/api/user/:uid/website',findAllWebsitesForUser);
+    app.get('/api/website/:wid',findWebsiteById);
 
     //PUT Calls
-    app.put('/api/questionnaire/:wid',updateWebsite);
+    app.put('/api/website/:wid',updateWebsite);
 
     //DELETE Calls
-    app.delete('/api/questionnaire/:wid',deleteWebsite);
+    app.delete('/api/website/:wid',deleteWebsite);
 
 
     function createWebsite(req, res) {
@@ -52,7 +52,7 @@ module.exports = function(app, models){
                     }
                 },
                 function (error) {
-                    res.sendStatus(400).send("questionnaire service server, findAllWebsitesForUser error");
+                    res.sendStatus(400).send("website service server, findAllWebsitesForUser error");
                 }
             )
     }
@@ -89,7 +89,7 @@ module.exports = function(app, models){
                     res.json(website)
                 },
                 function (error){
-                    res.sendStatus(400).send("questionnaire service server, updateWebsite error");
+                    res.sendStatus(400).send("website service server, updateWebsite error");
                 }
             );
     }

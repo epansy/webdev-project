@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/home">Register</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-trial" href="#!/home">Back</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <h1>Register</h1>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <input type="text"
+           class="form-control cl-form-control-margin"
+           placeholder="username"
+           ng-model="model.username"/>
+    <input type="password"
+           class="form-control cl-form-control-margin"
+           placeholder="password"
+           ng-model="model.password"/>
+    <input type="password"
+           class="form-control cl-form-control-margin"
+           placeholder="verify password"
+           ng-model="model.vpassword"/>
+	<select class="form-control cl-form-control-margin" ng-model="model.selectValue" ng-change="model.selectedChange(selectedValue)"> 
+		 <option style="display:none" value=""><strong>select user role(default role is User)</strong></option>
+		 <option value="USER" >User</option>
+		 <option value ="ADMIN">Admin</option>
+	</select>
+    <a class="btn btn-primary btn-block cl-btn-top-margin"
+       ng-click="model.register(model.username, model.password, model.vpassword,model.selectValue)">Register</a>
+    <a class="btn btn-danger btn-block"
+       href="#!/login">Cancel</a>
+</div>
+</section>

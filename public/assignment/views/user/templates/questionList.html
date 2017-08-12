@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#!/profile">Question<span> List</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-trial" href="#!/questionEdit">Add Question</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+	<h3>Question List</h3>
+<!--	<a href="#!/questionEdit" class="btn btn-primary pull-right mb12">Add question</a>-->
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Type</td>
+				<td>Name</td>
+				<td>Option</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="q in model.questions">
+				<td>{{q.id}}</td>
+				<td>{{q.qtype}}</td>
+				<td>{{q.name}}</td>
+				<td>
+					<a href="#!/questionEditAlready/{{q.id}}" class="btn btn-primary">Edit</a>
+					<a href="javascript:void(0);" class="btn btn-primary" ng-click="model.deleteQuestion(q.id,$index)">Del</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</section>

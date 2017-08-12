@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#!/profile">Paper<span> List</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-trial" href="#!/paperEdit">Add Paper</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+	<h3>Paper List</h3>
+<!--	<a href="#!/paperEdit" class="btn btn-primary pull-right mb12">Add a new paper</a>-->
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<td>id</td>
+				<td>Type</td>
+				<td>Number of Questions</td>
+				<td>Option</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in model.papers">
+				<td>{{p.id}}</td>
+				<td>{{p.name}}</td>
+				<td>{{p.questionIds.length}}</td>
+				<td>
+					<a href="#!/paperPreview/{{p.id}}/" class="btn btn-primary">Preview</a>
+					<a href="#!/paperEditAlready/{{p.id}}/" class="btn btn-primary">Edit</a>
+					<a href="javascript:void(0);" class="btn btn-primary" ng-click="model.deletePaper(p.id,$index)">Del</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</section>

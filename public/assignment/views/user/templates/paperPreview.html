@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#!/paperList">Paper<span> Preview</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-trial" href="#!/paperList">Back</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <div class="col-sm-8">
+        <form class="form-horizontal">
+			<div class="panel panel-info">
+			    <div class="panel-heading">Paper Preview</div>
+			    <div class="panel-body">
+					<h3 class="text-center">{{model.name}}</h3>
+					<div class="form-group">
+						<h3> Select questions </h3>
+					</div>
+					<div class="form-group" ng-repeat="qo in model.qselect">
+						<div class="col-sm-8">
+							<h4> {{$index}}. {{qo.content}}</h4>
+						</div>
+						<div class="col-sm-8">
+							<div class="row mb12" ng-repeat="o in qo.options">
+								<div class="col-sm-10">
+									<h5> {{ model.toWord($index)  }}. {{ o.content }}</h5> 
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<h3> Fill questions </h3>
+					</div>
+					<div class="form-group" ng-repeat="qo in model.qfill">
+						<div class="col-sm-8">
+							<h4> {{$index}}. {{qo.content}}</h4>
+						</div>
+						
+					</div>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+</section>

@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/home">User<span> Management</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-trial" href="#!/adduser">Add user</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+<!--    <a href="#!/adduser" class="btn btn-trial">Add user</a>-->
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <td>Username</td>
+            <td>Email</td>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Option</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in model.users">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>
+                <a href="#!/edituser/{{user._id}}" class="btn btn-primary">
+                    Edit
+                </a>
+                <a ng-click="model.deleteUser(user,$index)" class="btn btn-warning">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</section>

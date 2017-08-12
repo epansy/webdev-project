@@ -1,0 +1,16 @@
+Database : using mongo db and mongoose
+
+Front-end: using bootstrap,jquery, font-awesome,  textAngular
+
+Front-end routing: using angular-route
+
+Back-end:  
+1, bcrypt-nodejs : to encrypt user’s password.
+2, passport, passport-facebook, passport-google-oauth, passport-local : to let user login with their google accounts.
+3, express-session, body-parser, cookie-parser: user authentication
+4, jquery: using jquery to change userlist/questionlist/paperlist when a item deleted.
+
+Third party API: 
+Weather API: http://api.openweathermap.org/data/2.5/weather?q=London&APPID=2549a75fa763e5ce516b7a73c78a0fd4
+
+

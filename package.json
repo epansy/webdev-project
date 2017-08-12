@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/epansy/dai-min-webdev.git"
+    "url": "git+https://github.com/epansy/webdev-project.git"
   },
   "keywords": [
     "web",
@@ -18,11 +17,12 @@
     "angular"
   ],
   "bugs": {
-    "url": "https://github.com/epansy/dai-min-webdev/issues"
+    "url": "https://github.com/epansy/webdev-project/issues"
   },
-  "homepage": "https://github.com/epansy/dai-min-webdev#readme",
+  "homepage": "https://github.com/epansy/webdev-project#readme",
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.3",

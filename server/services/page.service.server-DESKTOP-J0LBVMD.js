@@ -4,17 +4,17 @@ module.exports = function(app, models){
 
 
     //POST calls
-    app.post("/api/questionnaire/:wid/question", createPage);
+    app.post("/api/website/:wid/page", createPage);
 
     //GET calls
-    app.get("/api/questionnaire/:wid/question", findAllPagesForWebsite);
-    app.get("/api/question/:pid", findPageById);
+    app.get("/api/website/:wid/page", findAllPagesForWebsite);
+    app.get("/api/page/:pid", findPageById);
 
     //PUT calls
-    app.put("/api/question/:pid", updatePage);
+    app.put("/api/page/:pid", updatePage);
 
     //DELETE calls
-    app.delete("/api/question/:pid", deletePage);
+    app.delete("/api/page/:pid", deletePage);
 
     //API calls implementation
     function createPage(req, res) {
@@ -33,7 +33,7 @@ module.exports = function(app, models){
                     }
                 },
                 function (error) {
-                    res.sendStatus(400).send("question service server, createPage error");
+                    res.sendStatus(400).send("page service server, createPage error");
                 }
             )
     }
@@ -52,7 +52,7 @@ module.exports = function(app, models){
                     }
                 },
                 function (error) {
-                    res.sendStatus(400).send("question service server, findAllPagesForWebsite error");
+                    res.sendStatus(400).send("page service server, findAllPagesForWebsite error");
                 }
             )
     }
@@ -72,7 +72,7 @@ module.exports = function(app, models){
                     }
                 },
                 function (error) {
-                    res.sendStatus(400).send("question service server, findPageById error");
+                    res.sendStatus(400).send("page service server, findPageById error");
                 }
             );
     }
@@ -86,7 +86,7 @@ module.exports = function(app, models){
             .then(function (page) {
                 res.json(page);
             }, function (status) {
-                res.status(400).send("question service server, updatePage error");
+                res.status(400).send("page service server, updatePage error");
             });
     }
 

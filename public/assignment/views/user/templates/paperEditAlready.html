@@ -1,0 +1,74 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#!/paperList">Paper<span> List</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-trial" href="#!/paperList">Back</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <div class="col-sm-8">
+        <form class="form-horizontal">
+			<div class="panel panel-info">
+			    <div class="panel-heading">Paper info</div>
+			    <div class="panel-body">
+			        <div class="form-group">
+			            <label class="col-sm-2 control-label">name:</label>
+			            <div class="col-sm-8">
+			                <input type="text" class="form-control" ng-model="model.name">
+			            </div>
+			        </div>
+			        <div class="form-group">
+			        	<label class="col-sm-2 control-label">select questions</label>
+						<div class="col-sm-10">
+							<ul class="list-group" style="max-height:500px;overflow:auto;">
+								<li class="list-group-item" ng-repeat="q in model.questions">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="{{q.id}}" ng-model="q.checked">
+											{{q.name}}
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+			        </div>
+			        
+			    </div>
+			</div>
+			<div class="form-group" style="margin:80px 0">
+			    <label class="col-sm-2 control-label">&nbsp;</label>
+			    <div class="col-sm-3">
+			        <button class="btn btn-block btn-primary" ng-click="model.submit()">Submit</button>
+			    </div>
+			    <div class="col-sm-3">
+			        <a href="#!/paperList" class="btn btn-default btn-block">Cancel</a>
+			    </div>
+			</div>
+        </form>
+    </div>
+    <div class="previewarea col-sm-4">
+	    <div class="panel panel-info">
+	        <div class="panel-heading">Paper Preview</div>
+	        <div class="panel-body" style="max-height: 500px; overflow-y: auto;">
+	        	<ol>
+	        		<li ng-repeat="formData in model.questions" ng-show="formData.checked">
+	        			{{formData.name}}
+	        		</li>
+	        	</ol>
+	        </div>
+	    </div>
+	</div>
+</div>
+</section>

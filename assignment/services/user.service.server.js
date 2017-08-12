@@ -9,14 +9,15 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
+
 module.exports = function(app, models){
 
-    var userModel = models.userModel;
+    var model = models.userModel;
 
-    app.get('/api/publisher', findUserByUsername);
-    app.get('/api/publisher/:uid', findUserById);
-    app.put('/api/publisher/:uid', updateUser);
-    app.delete('/api/publisher/:uid', deleteUser);
+    app.get('/api/user', findUserByUsername);
+    app.get('/api/user/:uid', findUserById);
+    app.put('/api/user/:uid', updateUser);
+    app.delete('/api/user/:uid', deleteUser);
     app.get('/api/alluser', findAllUsers);
 
     /*Config Passport*/
@@ -24,6 +25,7 @@ module.exports = function(app, models){
     app.post('/api/logout', logout);
     app.get ('/api/loggedin', loggedin);
     app.post('/api/register', register);
+	app.post('/api/createnewuser', createNewUser);
 
     app.get('/auth/google',
         passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -45,10 +47,14 @@ module.exports = function(app, models){
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     function googleStrategy(token, refreshToken, profile, done) {
-        userModel
+
+        // console.log("profile: " + profile);
+
+        model
             .findUserByGoogleId(profile.id)
             .then(
                 function(user) {
+                    // console.log("user: " + user);
                     if(user) {
                         return done(null, user);
                     } else {
@@ -65,7 +71,7 @@ module.exports = function(app, models){
                                 token: token
                             }
                         };
-                        return userModel
+                        return model
                             .createUser(newGoogleUser);
                     }
                 },
@@ -89,11 +95,11 @@ module.exports = function(app, models){
 
     // localStrategy function
     function localStrategy(username, password, done) {
-        userModel
+        model
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    // console.log(publisher);
+                    // console.log(user);
                     if (user === null || user === undefined) {
                         return done(null, false, {message: 'User not found!'})
                     } else if(bcrypt.compareSync(password, user.password)) {
@@ -119,7 +125,7 @@ module.exports = function(app, models){
     }
 
     function deserializeUser(user, done) {
-        userModel
+        model
             .findUserById(user._id)
             .then(
                 function(user){
@@ -149,8 +155,8 @@ module.exports = function(app, models){
     function register(req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
-        // console.log(publisher);
-        userModel
+        // console.log(user);
+        model
             .createUser(user)
             .then(
                 function (user) {
@@ -160,16 +166,33 @@ module.exports = function(app, models){
                 }
             )
     }
+	function createNewUser(req, res) {
 
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+        // console.log(user);
+
+        model
+            .createUser(user)
+            .then(
+                function (newUser) {
+                    res.json(newUser);
+                },
+                function (error) {
+                    res.sendStatus(404).send(error);
+                }
+            );
+
+    }
     /*API implementation*/
 
     function createUser(req, res) {
 
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
-        // console.log(publisher);
+        // console.log(user);
 
-        userModel
+        model
             .createUser(user)
             .then(
                 function (newUser) {
@@ -186,11 +209,11 @@ module.exports = function(app, models){
 
         var username = req.query.username;
 
-        userModel
+        model
             .findUserByUsername(username)
             .then(
-                function (user) {
-                    res.json(user);
+                function (users) {
+                    res.json(users);
                 },
                 function (error) {
                     res.sendStatus(404).send(error);
@@ -199,7 +222,7 @@ module.exports = function(app, models){
     }
 
     function findAllUsers(req, res) {
-        userModel
+        model
             .findAllUser()
             .then(
                 function (users) {
@@ -217,11 +240,11 @@ module.exports = function(app, models){
         var params = req.params;
 
         if(params.uid){
-            userModel
+            model
                 .findUserById(params.uid)
                 .then(
                     function (user){
-                        // console.log(publisher);
+                        // console.log(user);
                         if(user){
                             res.json(user);
                         } else {
@@ -240,7 +263,7 @@ module.exports = function(app, models){
     function updateUser(req,res) {
         var uid = req.params.uid;
         var user = req.body;
-        userModel
+        model
             .updateUser(uid, user)
             .then(
                 function (user){
@@ -256,7 +279,7 @@ module.exports = function(app, models){
     function deleteUser(req,res) {
         var uid = req.params.uid;
         if(uid){
-            userModel
+            model
                 .deleteUser(uid)
                 .then(
                     function (status){
@@ -267,7 +290,7 @@ module.exports = function(app, models){
                     }
                 );
         } else{
-            // Precondition Failed. Precondition is that the publisher exists.
+            // Precondition Failed. Precondition is that the user exists.
             res.sendStatus(412);
         }
 

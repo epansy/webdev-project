@@ -1,0 +1,113 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/home">Admin<span> Panel</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-trial" ng-click="model.updateUser(model.admin)">Update</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--<nav class="navbar navbar-fixed-top cl-blue-navbar">
+    <div class="container-fluid">
+        <a href="#!/home" class="navbar-brand cl-text-white cl-text-bold">
+            <span class="glyphicon glyphicon-chevron-left"> AdminPanel</span>
+        </a>
+        <a ng-click="model.updateUser(model.admin)"
+           class="navbar-link navbar-text cl-text-white pull-right cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>-->
+
+<section class="section-padding">
+<div class="container">
+	<h3>My profile</h3>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <div ng-show="model.updated" class="alert alert-success" role="alert">{{model.updated}}</div>
+    <form class="cl-form-bottom-padding">
+        <label for="username">Username</label>
+        <input ng-model="model.admin.username"
+               type="text"
+               class="form-control"
+               placeholder="Username"
+               id="username" readonly>
+        <label for="email">Email</label>
+        <input ng-model="model.admin.email"
+               type="email"
+               class="form-control"
+               placeholder="alice@emmail.com"
+               id="email" required>
+        <label for="fName">First Name</label>
+        <input ng-model="model.admin.firstName"
+               type="text"
+               class="form-control"
+               placeholder="first name"
+               id="fName" required>
+        <label for="lName">Last Name</label>
+        <input ng-model="model.admin.lastName"
+               type="text"
+               class="form-control"
+               placeholder="last name"
+               id="lName" required>
+    </form>
+
+    <a ng-click="model.logout()" class="btn btn-danger btn-block">
+        Logout
+    </a>
+    <a ng-click="model.deleteUser(model.admin)"
+       class="btn btn-danger btn-block">
+        Unregister
+    </a>
+    <a href="#!/home" class="btn btn-primary btn-block">
+        Homepage
+    </a>
+    <a href="#!/management" class="btn btn-primary btn-block">
+        User Management
+    </a>
+</div>
+</section>
+<!--
+<div class="container">
+	<h3>Users Management</h3>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+        <a href="#!/adduser" class="btn btn-primary pull-right mb12">Add user</a>
+        <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Option</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in model.users">
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>
+                    <a href="#!/edituser/{{user._id}}" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a ng-click="model.deleteUser(user,$index)" class="btn btn-warning">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default">
+</nav>-->

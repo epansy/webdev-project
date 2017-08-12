@@ -6,10 +6,10 @@ module.exports = function(app, models){
     var widgetModel = models.widgetModel;
 
     // POST call
-    app.post("/api/question/:pid/widget", createWidget);
+    app.post("/api/page/:pid/widget", createWidget);
 
     // GET call
-    app.get("/api/question/:pid/widget", findAllWidgetsForPage);
+    app.get("/api/page/:pid/widget", findAllWidgetsForPage);
     app.get("/api/widget/:wgid", findWidgetById);
 
     // PUT call
@@ -22,7 +22,7 @@ module.exports = function(app, models){
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     // reorder widget list
-    app.put("/api/question/:pid/widget", reorderWidgets);
+    app.put("/api/page/:pid/widget", reorderWidgets);
 
     // api implementation
 
@@ -132,7 +132,7 @@ module.exports = function(app, models){
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
 
-        var originalname  = myFile.originalname; // file name on publisher's computer
+        var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
         var path          = myFile.path;         // full path of uploaded file
         var destination   = myFile.destination;  // folder where file is saved to
@@ -189,7 +189,7 @@ module.exports = function(app, models){
 
         }
 
-        var callbackUrl  = "/#!/publisher/"+userId+"/questionnaire/"+websiteId+"/question/"+pageId+"/widget";
+        var callbackUrl  = "/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
         res.redirect(callbackUrl);
     }
 

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Add<span> User</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-trial" href="#!/admin">Back</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="section-padding">
+<div class="container">
+    <h3>Edit User</h3>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+    <form class="cl-form-bottom-padding">
+        <label for="username">Username</label>
+        <input ng-model="model.user.username"
+               type="text"
+               class="form-control"
+               placeholder="Username"
+               id="username" required>
+        <label for="email">Email</label>
+        <input ng-model="model.user.email"
+               type="email"
+               class="form-control"
+               placeholder="alice@emmail.com"
+               id="email" required>
+        <label for="fName">First Name</label>
+        <input ng-model="model.user.firstName"
+               type="text"
+               class="form-control"
+               placeholder="first name"
+               id="fName" required>
+        <label for="lName">Last Name</label>
+        <input ng-model="model.user.lastName"
+               type="text"
+               class="form-control"
+               placeholder="last name"
+               id="lName" required>
+		<label for="lName">Password</label>
+        <input ng-model="model.user.password"
+               type="text"
+               class="form-control"
+               placeholder="password"
+               id="lName" required>
+    </form>
+    <a class="btn btn-primary btn-block cl-btn-top-margin"
+       ng-click="model.register(model.user)">Add a new User</a>
+    <a class="btn btn-danger btn-block"
+       href="#!/admin">Cancel</a>
+</div>
+</section>

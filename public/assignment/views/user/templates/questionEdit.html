@@ -1,0 +1,129 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#!/questionList">Question<span> List</span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-trial" href="#!/questionList">Back</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="section-padding">
+<div class="row">
+    <div class="col-sm-8">
+        <form class="form-horizontal">
+			<div class="panel panel-info">
+			    <div class="panel-heading" ng-model="model.updated">Question Info</div>
+			    <div class="panel-body">
+					<div class="form-group">
+			            <label class="col-sm-2 control-label">Type</label>
+			            <div class="col-sm-3">
+			                <select class="form-control" ng-model="model.qtype" ng-options="t.index as  t.content for t in model.qtypes" ng-change="model.changeOP()"></select>
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            <label class="col-sm-2 control-label">name</label>
+			            <div class="col-sm-8">
+			                <input type="text" class="form-control" ng-model="model.title" required>
+			            </div>
+			        </div>
+			        
+					<div ng-if="model.qtype==1">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">content:</label>
+							<div class="col-sm-8">
+								<textarea rows="5" class="form-control" ng-model="model.content" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">options</label>
+							<div class="col-sm-8">
+								<div class="row mb12" ng-repeat="o in model.options">
+									<label class="col-sm-1 control-label">{{ model.toWord($index)  }}</label>
+									<div class="col-sm-10">
+										<input type="text" ng-model="o.content" class="form-control" required>
+									</div>
+									<div class="col-sm-1"><button class="btn btn-primary glyphicon glyphicon-trash" ng-click="model.removeOption($index)"></button></div>
+								</div>
+							</div>
+							<div class="col-sm-3 col-sm-offset-2">
+								<button class="btn btn-primary mt12" ng-click="model.addOption()">Add a new option</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Key</label>
+							<div class="col-sm-8">
+								<label class="radio-inline col-sm-2" ng-repeat="o in model.options">
+									<input type="radio" name="rightanswer" ng-model="model.answer" ng-value="$index" required>
+									{{ model.toWord($index)  }}
+								</label>
+							</div>
+						</div>
+					</div>
+					<div ng-if="model.qtype==2">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Content</label>
+							<div class="col-sm-8">
+								<textarea rows="5" class="form-control" ng-change="model.subscirbeCont()" ng-model="model.content"></textarea>
+								<div class="text-info">$$ instead of white place</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Key</label>
+							<div class="col-sm-8">
+								<div class="row mb12" ng-repeat="a in model.ansernewarr">
+									<label class="col-sm-2 control-label">{{$index+1}}:</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" ng-model="a">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			        
+			    </div>
+			</div>
+			<div class="form-group" style="margin:80px 0">
+			    <label class="col-sm-2 control-label">&nbsp;</label>
+			    <div class="col-sm-3">
+			        <button class="btn btn-block btn-primary" ng-click="model.submit()">Submit</button>
+			    </div>
+			    <div class="col-sm-3">
+			        <a href="#!/questionList" class="btn btn-default btn-block">cancel</a>
+			    </div>
+			</div>
+        </form>
+    </div>
+    <div class="previewarea col-sm-4">
+	    <div class="panel panel-info" ng-if="model.qtype==1">
+	        <div class="panel-heading">Question Preview</div>
+	        <div class="panel-body" style="max-height: 500px; overflow-y: auto;">
+	        	<div class="form-control-static">{{model.content}}</div>
+				<ul class="list-unstyled">
+					<li ng-repeat="o in model.options" >
+						<label class="radio-inline">
+							<input type="radio" ng-model="model.answer" ng-checked="$index==model.answer">
+							{{ model.toWord($index)  }}. {{o.content}}
+						</label>
+					</li>
+				</ul>
+	        </div>
+	    </div>
+		<div class="panel panel-info" ng-if="model.qtype==2">
+	        <div class="panel-heading">Question Preview</div>
+	        <div class="panel-body" style="max-height: 500px; overflow-y: auto;">
+	        	<div class="form-control-static">{{model.contentnew}}</div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</section>

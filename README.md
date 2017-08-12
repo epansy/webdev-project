@@ -1,13 +1,12 @@
 # dai-min-webdev
-this repository is for WEB DEV Course Assignments and Project.
+this repository is for WEB DEV Course Project.
 
 Name: Min Dai
 
 Graduate student in NEU Align program. 
 
-Heroku link: https://dashboard.heroku.com/apps/dai-min-webdev
+Heroku link: https://webdev-project-mindai.herokuapp.com/
 
-Project link: http://localhost:3000/project/index.html
+Project link: http://localhost:5000
 
-Assignments link: http://localhost:3000/assignment/index.html
 
